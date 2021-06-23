@@ -131,7 +131,6 @@ class JokesMainAbl {
     return dtoOut;
   }
 
-
   async create(awid, dtoIn, session, authorizationResult) {
 
     let validationResult = this.validator.validate("jokeCreateDtoInType", dtoIn);
