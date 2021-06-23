@@ -1,0 +1,19 @@
+{
+  "product": "pfilip_training_stepbystepg01",
+  "version": "0.1.0",
+  "license": "License Commercial",
+  "description": {
+    "en": "",
+    "cs": ""
+  },
+  "devkit": {
+    "development": {
+      "appBoxLocationUri": "----- VALUE REQUIRED -----",
+      "appDeploymentUri": null
+    }
+  },
+  "pfilip_training_stepbystepg01-nodejs-hi": {},
+  "pfilip_training_stepbystepg01-nodejs-server": {},
+  "uu_jokes_maing01-hi": {},
+  "uu_jokes_maing01-server": {}
+}
