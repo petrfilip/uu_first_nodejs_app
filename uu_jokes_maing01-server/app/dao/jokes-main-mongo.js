@@ -3,7 +3,7 @@ const { UuObjectDao } = require("uu_appg01_server").ObjectStore;
 
 class JokesMainMongo extends UuObjectDao {
   async createSchema() {
-    await super.createIndex({ awid: 1 }, { unique: true });
+    await super.createIndex({ awid: 1,  _id: 1 }, { unique: true });
   }
 
   async create(uuObject) {
@@ -16,6 +16,10 @@ class JokesMainMongo extends UuObjectDao {
       id: id,
     };
     return await super.findOne(filter);
+  }
+
+  async listByVisibility(awid, visibility, pageInfo = {}) {
+    return await super.find({awid, visibility}, pageInfo);
   }
 
   async update(uuObject) {

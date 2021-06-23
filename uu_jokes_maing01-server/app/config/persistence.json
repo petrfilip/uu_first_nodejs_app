@@ -5,7 +5,8 @@
       "realization": "MongoDB",
       "schemaMap": {
         "jokesMain": {
-          "realization": "dao/JokesMainMongo"
+          "realization": "dao/JokesMainMongo",
+          "maxNoi": 1024
         }
       }
     }

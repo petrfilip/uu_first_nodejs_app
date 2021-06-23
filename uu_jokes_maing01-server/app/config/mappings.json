@@ -20,6 +20,31 @@
         "realization": "api/controllers/JokesMainController.sayHello",
         "httpMethod": "GET",
         "type": "CMD"
+      },
+      "joke/create": {
+        "realization": "api/controllers/JokesMainController.create",
+        "httpMethod": "POST",
+        "type": "CMD"
+      },
+      "joke/list": {
+        "realization": "api/controllers/JokesMainController.list",
+        "httpMethod": "GET",
+        "type": "CMD"
+      },
+      "joke/get": {
+        "realization": "api/controllers/JokesMainController.get",
+        "httpMethod": "GET",
+        "type": "CMD"
+      },
+      "joke/delete": {
+        "realization": "api/controllers/JokesMainController.delete",
+        "httpMethod": "POST",
+        "type": "CMD"
+      },
+      "joke/update": {
+        "realization": "api/controllers/JokesMainController.update",
+        "httpMethod": "POST",
+        "type": "CMD"
       }
     }
   }
