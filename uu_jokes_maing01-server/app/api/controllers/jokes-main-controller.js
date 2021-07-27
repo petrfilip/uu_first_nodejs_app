@@ -23,6 +23,10 @@ class JokesMainController {
     return JokesMainAbl.create(ucEnv.getUri().getAwid(), ucEnv.getDtoIn(), ucEnv.getSession(), ucEnv.getAuthorizationResult());
   }
 
+  getImageData(ucEnv) {
+    return JokesMainAbl.getImageData(ucEnv.getUri().getAwid(), ucEnv.getDtoIn(), ucEnv.getSession(), ucEnv.getAuthorizationResult());
+  }
+
 }
 
 module.exports = new JokesMainController();

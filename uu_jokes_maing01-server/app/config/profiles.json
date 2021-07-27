@@ -40,6 +40,10 @@
       "joke/update": {
         "sysStateList": ["active"],
         "profileList": ["Authorities", "Executives"]
+      },
+      "joke/getImage": {
+        "sysStateList": ["active"],
+        "profileList": ["Authorities", "Executives", "Readers"]
       }
     }
   }

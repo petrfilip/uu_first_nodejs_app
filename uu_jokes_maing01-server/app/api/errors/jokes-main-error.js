@@ -12,6 +12,14 @@ const Create = {
     }
   },
 
+  JokeImageDaoCreateFailed: class extends JokesMainUseCaseError {
+    constructor() {
+      super(...arguments);
+      this.code = `${Create.UC_CODE}jokeImageDaoCreateFailed`;
+      this.message = "Create of jokeImage by jokeImage Dao create failed.";
+    }
+  },
+
   JokeDaoCreateFailed: class extends JokesMainUseCaseError {
     constructor() {
       super(...arguments);
@@ -77,6 +85,14 @@ const Delete = {
       super(...arguments);
       this.code = `${Delete.UC_CODE}jokeDaoDeleteFailed`;
       this.message = "Delete joke by joke Dao create failed.";
+    }
+  },
+
+  JokeImageDeleteFailed: class extends JokesMainUseCaseError {
+    constructor() {
+      super(...arguments);
+      this.code = `${GetImageData.UC_CODE}jokeImageDaoDeleteFailed`;
+      this.message = "Delete image by joke image Dao failed.";
     }
   }
 };

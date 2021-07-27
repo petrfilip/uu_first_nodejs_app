@@ -2,7 +2,8 @@
 
 const jokeCreateDtoInType = shape({
   name: string(255).isRequired(),
-  text: string(4000)
+  text: string(4000),
+  image: binary()
 });
 
 const jokeListDtoInType = shape({
@@ -25,3 +26,8 @@ const jokeUpdateDtoInType = shape({
   name: uu5String(255),
   text: uu5String(4000),
 })
+
+const jokeGetImageDataDtoInType = shape ({
+  image: code().isRequired(),
+  contentDisposition: oneOf(["inline", "attachment"])
+});

@@ -45,6 +45,11 @@
         "realization": "api/controllers/JokesMainController.update",
         "httpMethod": "POST",
         "type": "CMD"
+      },
+      "joke/getImage": {
+        "realization": "api/controllers/JokesMainController.getImageData",
+        "httpMethod": "GET",
+        "type": "CMD"
       }
     }
   }

@@ -7,6 +7,9 @@ const {UriBuilder} = require("uu_appg01_server").Uri;
 const {LoggerFactory} = require("uu_appg01_server").Logging;
 const {AppClient} = require("uu_appg01_server");
 const Errors = require("../api/errors/jokes-main-error.js");
+const ErrorsImageData = require("../api/errors/jokes-image-error.js");
+const {BinaryStoreError} = require("uu_appg01_binarystore");
+const {Base64} = require("uu_appg01_server").Utils;
 
 const WARNINGS = {
   createUnsupportedKeys: {
@@ -20,7 +23,10 @@ const WARNINGS = {
   },
   updateUnsupportedKeys: {
     code: `${Errors.Get.UC_CODE}unsupportedKeys`
-  }
+  },
+  getImageDataUnsupportedKeys: {
+    code: `${Errors.List.UC_CODE}unsupportedKeys`
+  },
 };
 
 const EXECUTIVES_PROFILE = "Executives";
@@ -31,6 +37,7 @@ class JokesMainAbl {
   constructor() {
     this.validator = Validator.load();
     this.dao = DaoFactory.getDao("jokesMain");
+    this.jokeImageDao = DaoFactory.getDao("jokeImage");
   }
 
   async update(awid, dtoIn, session, authorizationResult) {
@@ -39,7 +46,7 @@ class JokesMainAbl {
     let uuAppErrorMap = ValidationHelper.processValidationResult(dtoIn, validationResult,
       WARNINGS.updateUnsupportedKeys.code, Errors.Update.InvalidDtoIn);
 
-    const jokeToUpdate =  await this.get(awid, {...dtoIn});
+    const jokeToUpdate = await this.get(awid, {...dtoIn});
 
     if (!this.hasRights(authorizationResult, jokeToUpdate, session)) {
       throw new Errors.Update.UserNotAuthorized();
@@ -66,11 +73,15 @@ class JokesMainAbl {
     let uuAppErrorMap = ValidationHelper.processValidationResult(dtoIn, validationResult,
       WARNINGS.listUnsupportedKeys.code, Errors.Delete.InvalidDtoIn);
 
-    const jokeToDelete =  await this.get(awid, dtoIn);
+    const jokeToDelete = await this.get(awid, dtoIn);
 
     if (!this.hasRights(authorizationResult, jokeToDelete, session)) {
       throw new Errors.Delete.UserNotAuthorized();
     }
+
+    dtoIn = await this.get(awid, dtoIn)
+
+    await this._deleteImage(awid, dtoIn.image, uuAppErrorMap);
 
     try {
       this.dao.remove(jokeToDelete)
@@ -81,10 +92,19 @@ class JokesMainAbl {
       throw e;
     }
 
-
     let dtoOut = {}
     dtoOut.uuAppErrorMap = uuAppErrorMap;
     return dtoOut;
+  }
+
+  async _deleteImage(awid, binaryCode, uuAppErrorMap) {
+    if (binaryCode) {
+      try {
+        await this.jokeImageDao.deleteByCode(awid, binaryCode);
+      } catch (e) {
+        throw new Errors.Delete.JokeImageDeleteFailed({uuAppErrorMap}, e);
+      }
+    }
   }
 
   hasRights(authorizationResult, jokeToDelete, session) {
@@ -132,17 +152,19 @@ class JokesMainAbl {
       WARNINGS.createUnsupportedKeys.code, Errors.Create.InvalidDtoIn);
 
     dtoIn.visibility = authorizationResult.getAuthorizedProfiles().includes(EXECUTIVES_PROFILE);
-
     dtoIn.uuIdentity = session.getIdentity().getUuIdentity();
     dtoIn.uuIdentityName = session.getIdentity().getName();
-
-
     dtoIn.awid = awid;
+    dtoIn.image = await this._uploadImage(awid, dtoIn.image);
+
     let dtoOut;
     try {
       dtoOut = await this.dao.create(dtoIn);
     } catch (e) {
       if (e instanceof ObjectStoreError) {
+        if (dtoIn.image) {
+          await this._deleteImage(awid, dtoIn.image, uuAppErrorMap);
+        }
         throw new Errors.Create.JokeDaoCreateFailed({uuAppErrorMap}, e);
       }
       throw e;
@@ -153,6 +175,43 @@ class JokesMainAbl {
     dtoOut.uuAppErrorMap = uuAppErrorMap;
     return dtoOut;
   }
+
+  async _uploadImage(awid, binary, code) {
+    if (binary) {
+      try {
+        const uploaded = await this.jokeImageDao.create({awid, code}, binary);
+        return uploaded.code;
+      } catch (e) {
+        if (e instanceof BinaryStoreError) { // A3
+          throw new Errors.Create.JokeImageDaoCreateFailed({uuAppErrorMap}, e);
+        }
+        throw e;
+      }
+    }
+  }
+
+  async getImageData(awid, dtoIn) {
+    let validationResult = this.validator.validate("jokeGetImageDataDtoInType", dtoIn);
+
+    let uuAppErrorMap = ValidationHelper.processValidationResult(dtoIn, validationResult,
+      WARNINGS.getImageDataUnsupportedKeys.code, ErrorsImageData.GetImageData.InvalidDtoIn);
+
+    let dtoOut = {};
+    try {
+      const data = await this.jokeImageDao.getDataByCode(awid, dtoIn.image)
+      dtoOut = data;
+    } catch (e) {
+      if (e.code === "uu-app-binarystore/objectNotFound") { // A3
+        throw new ErrorsImageData.GetImageData.JokeImageDoesNotExist({uuAppErrorMap}, {image: dtoIn.image});
+      }
+      throw e;
+    }
+
+    // hds 3
+    // dtoOut.uuAppErrorMap = uuAppErrorMap;
+    return dtoOut.stream;
+  }
+
 
 }
 
