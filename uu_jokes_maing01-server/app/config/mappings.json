@@ -2,7 +2,7 @@
   "{vendor}-{uuApp}-{uuSubApp}": {
     "useCaseMap": {
       "sys/uuAppWorkspace/init": {
-        "realization": "api/controllers/JokesMainController.init",
+        "realization": "api/controllers/JokesInstanceController.init",
         "httpMethod": "POST",
         "type": "CMD"
       },
@@ -17,7 +17,7 @@
         "type": "UVE"
       },
       "sayHello": {
-        "realization": "api/controllers/JokesMainController.sayHello",
+        "realization": "api/controllers/JokesInstanceController.sayHello",
         "httpMethod": "GET",
         "type": "CMD"
       },

@@ -23,12 +23,6 @@ class JokesMainController {
     return JokesMainAbl.create(ucEnv.getUri().getAwid(), ucEnv.getDtoIn(), ucEnv.getSession(), ucEnv.getAuthorizationResult());
   }
 
-  sayHello(ucEnv) {
-    return JokesMainAbl.sayHello(ucEnv.getUri().getAwid(), ucEnv.getDtoIn());
-  }
-  init(ucEnv) {
-    return JokesMainAbl.init(ucEnv.getUri(), ucEnv.getDtoIn(), ucEnv.getSession());
-  }
 }
 
 module.exports = new JokesMainController();

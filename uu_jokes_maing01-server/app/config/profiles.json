@@ -23,15 +23,15 @@
       },
       "joke/create": {
         "sysStateList": ["active"],
-        "profileList": ["Executives", "Readers"]
+        "profileList": ["Executives", "Authorities"]
       },
       "joke/list": {
         "sysStateList": ["active"],
-        "profileList": ["Public"]
+        "profileList": ["Authorities", "Executives", "Readers"]
       },
       "joke/get": {
         "sysStateList": ["active"],
-        "profileList": ["Public"]
+        "profileList": ["Authorities", "Executives", "Readers"]
       },
       "joke/delete": {
         "sysStateList": ["active"],
