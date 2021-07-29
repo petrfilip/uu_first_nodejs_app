@@ -10,8 +10,12 @@ class JokeImageMongo extends UuBinaryDao {
     return await super.insertFromStream(uuBinary, data);
   }
 
-  async update(uuBinary, data) {
-    return await super.updateFromStream({}, uuBinary, data);
+  async updateByCode(awid, code, data, revisionStrategy) {
+    let filter = {
+      awid: awid,
+      code: code
+    };
+    return await super.updateFromStream(filter, {awid}, data, false ,revisionStrategy);
   }
 
   async deleteByCode(awid, code) {

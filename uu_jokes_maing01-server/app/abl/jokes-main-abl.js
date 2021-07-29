@@ -30,7 +30,6 @@ const WARNINGS = {
 };
 
 const EXECUTIVES_PROFILE = "Executives";
-const AUTHORITIES_PROFILE = "Authorities";
 
 
 class JokesMainAbl {
@@ -51,7 +50,7 @@ class JokesMainAbl {
     if (!this.hasRights(authorizationResult, jokeToUpdate, session)) {
       throw new Errors.Update.UserNotAuthorized();
     }
-
+    dtoIn.image = await this._updateImage(awid, dtoIn.image, jokeToUpdate.image);
     let dtoOut = {}
     try {
       dtoIn.awid = awid
@@ -155,7 +154,7 @@ class JokesMainAbl {
     dtoIn.uuIdentity = session.getIdentity().getUuIdentity();
     dtoIn.uuIdentityName = session.getIdentity().getName();
     dtoIn.awid = awid;
-    dtoIn.image = await this._uploadImage(awid, dtoIn.image);
+    dtoIn.image = await this._createImage(awid, dtoIn.image);
 
     let dtoOut;
     try {
@@ -176,10 +175,42 @@ class JokesMainAbl {
     return dtoOut;
   }
 
-  async _uploadImage(awid, binary, code) {
+  async _updateImage(awid, binary, code) {
+    // update image
+    if (binary && code) {
+      try {
+        const uploaded = await this.jokeImageDao.updateByCode(awid, code, binary, "NONE")
+        return uploaded.code;
+      } catch (e) {
+        if (e instanceof BinaryStoreError) { // A3
+          throw new Errors.Create.JokeImageDaoUpdateFailed({uuAppErrorMap}, e);
+        }
+        throw e;
+      }
+    }
+
+    // create image
+    if (binary && !code) {
+      return await this._createImage(awid, binary)
+    }
+
+    // keep the origin image
+    if (!binary && code) {
+      return await code;
+    }
+
+    // the image is not still filled
+    if (!binary && !code) {
+      return null;
+    }
+
+    throw new Errors.Create.InvalidDtoIn({uuAppErrorMap});
+
+  }
+  async _createImage(awid, binary) {
     if (binary) {
       try {
-        const uploaded = await this.jokeImageDao.create({awid, code}, binary);
+        const uploaded = await this.jokeImageDao.create({awid}, binary);
         return uploaded.code;
       } catch (e) {
         if (e instanceof BinaryStoreError) { // A3
@@ -198,8 +229,7 @@ class JokesMainAbl {
 
     let dtoOut = {};
     try {
-      const data = await this.jokeImageDao.getDataByCode(awid, dtoIn.image)
-      dtoOut = data;
+      dtoOut = await this.jokeImageDao.getDataByCode(awid, dtoIn.image);
     } catch (e) {
       if (e.code === "uu-app-binarystore/objectNotFound") { // A3
         throw new ErrorsImageData.GetImageData.JokeImageDoesNotExist({uuAppErrorMap}, {image: dtoIn.image});

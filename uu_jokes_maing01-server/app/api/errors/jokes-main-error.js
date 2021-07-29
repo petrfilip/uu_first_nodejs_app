@@ -20,6 +20,14 @@ const Create = {
     }
   },
 
+  JokeImageDaoUpdateFailed: class extends JokesMainUseCaseError {
+    constructor() {
+      super(...arguments);
+      this.code = `${Create.UC_CODE}jokeImageDaoUpdateFailed`;
+      this.message = "Create of jokeImage by jokeImage Dao create failed.";
+    }
+  },
+
   JokeDaoCreateFailed: class extends JokesMainUseCaseError {
     constructor() {
       super(...arguments);
