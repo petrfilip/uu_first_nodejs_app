@@ -1,6 +1,6 @@
 {
   "product": "pfilip_training_stepbystepg01",
-  "version": "0.1.0",
+  "version": "0.1.0-DEV",
   "license": "License Commercial",
   "description": {
     "en": "",
@@ -8,8 +8,8 @@
   },
   "devkit": {
     "development": {
-      "appBoxLocationUri": "----- VALUE REQUIRED -----",
-      "appDeploymentUri": null
+      "appBoxLocationUri": "ues:UCL-BT:UDVH_TU",
+      "appDeploymentUri": "ues:UCL-BT[118500965363973101]:TRAINING_AWE[60a74789f903809d8237bb2c]:TGA.TRAININGAO.MAING01[610854660296c01920f9c93c]"
     }
   },
   "pfilip_training_stepbystepg01-nodejs-hi": {},

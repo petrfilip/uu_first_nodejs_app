@@ -2,14 +2,14 @@
   "schemaVersion": "1.0.0",
   "schemaSpecificationUri": "https://uuapp.plus4u.net/uu-bookkit-maing01/bef682626ed943f28cde360ccb325981/book/page?code=uuSubAppInstanceDescriptor",
   "uuSubApp": {
-    "code": "UU.JOKES.MAING01",
-    "version": "0.1.0",
+    "code": "TGA.TRAININGAO.MAING01",
+    "version": "0.1.0-DEV",
     "name": "uuJokesMaing01",
-    "description": "",
+    "description": "PLeaseRun",
     "license": "License Commercial",
     "asidRequired": true,
     "awidCount": 1,
-    "resourcePoolUri": "----- VALUE REQUIRED -----",
+    "resourcePoolUri": "ues:UCL-BT:TRAINING_AWE",
     "uuAppNodeSetMap": {
       "CMD": {
         "nodeSize": "G1_S",
@@ -17,7 +17,7 @@
           "min": 1,
           "max": 1
         },
-        "appPackUri": null,
+        "appPackUri": "ues:UCL-BT:TGA.TRAININGAO.MAING01/APPBOX-0.1.0-DEV:TGA.TRAININGAO.MAING01/CMD-PACK",
         "runtimeStack": "UU.APPG01/APPSERVER_NODEJS_STACK-1.6"
       }
     },
@@ -29,7 +29,36 @@
         "alias": "primary"
       }
     },
+    "uuAppBinaryStoreMap": {
+      "BSID_1": {
+        "size": 0.25,
+        "alias": "binary"
+      }
+    },
     "uuConfigMap": {
+      "asid_license_owner_list": [
+        "26-3418-1"
+      ]
+    }
+  },
+  "uuSubAppInstance": {
+    "asid": "142394f40d2f439c8530f59af08d9944",
+    "asidOwner": "26-3418-1",
+    "awidList": [
+      {
+        "awid": "3d4a47b57b4944e1be0a9cff8ffc01d7",
+        "awidOwner": "26-3419-1"
+      }
+    ],
+    "uuAppObjectStoreMap": {
+      "OSID_1": {
+        "osid": "4befa8b9549548319cddee3d8c508fc7"
+      }
+    },
+    "uuAppBinaryStoreMap": {
+      "BSID_1": {
+        "bsid": "3cd5e80526a64946b25ff40dd57092c0"
+      }
     }
   }
 }
