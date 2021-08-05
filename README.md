@@ -10,6 +10,7 @@ Přidány základní uuCmd pro objekt `joke`
 - joke/delete
 - joke/list
 - joke/get
+- joke/getImage
 
 Insomnia dodána.
 
@@ -17,3 +18,13 @@ Insomnia dodána.
 Nastavení testů
 
 ![alt text](./how-to-set-tests.png)
+
+---
+uuCmd jsou pokryty testy. Není uděláno pokrytí práce s obrázkem.
+```
+Test Suites: 7 passed, 7 total
+Tests:       16 passed, 16 total
+Snapshots:   0 total
+Time:        11.583 s, estimated 17 s
+Ran all test suites.
+```

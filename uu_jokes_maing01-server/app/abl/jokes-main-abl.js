@@ -239,7 +239,7 @@ class JokesMainAbl {
 
     // hds 3
     // dtoOut.uuAppErrorMap = uuAppErrorMap;
-    return dtoOut.stream;
+    return dtoOut;
   }
 
 

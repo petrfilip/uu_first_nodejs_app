@@ -23,8 +23,9 @@ class JokesMainController {
     return JokesMainAbl.create(ucEnv.getUri().getAwid(), ucEnv.getDtoIn(), ucEnv.getSession(), ucEnv.getAuthorizationResult());
   }
 
-  getImageData(ucEnv) {
-    return JokesMainAbl.getImageData(ucEnv.getUri().getAwid(), ucEnv.getDtoIn(), ucEnv.getSession(), ucEnv.getAuthorizationResult());
+  async getImageData(ucEnv) {
+    const dtoOut =  await JokesMainAbl.getImageData(ucEnv.getUri().getAwid(), ucEnv.getDtoIn(), ucEnv.getSession(), ucEnv.getAuthorizationResult());
+    return ucEnv.setBinaryDtoOut(dtoOut, ucEnv.getDtoIn().contentDisposition);
   }
 
 }
