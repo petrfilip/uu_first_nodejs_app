@@ -1,7 +1,7 @@
 //@@viewOn:imports
 import UU5 from "uu5g04";
 import "uu5g04-bricks";
-import { createVisualComponent } from "uu5g04-hooks";
+import {createVisualComponent} from "uu5g04-hooks";
 
 import Config from "./config/config.js";
 //@@viewOff:imports
@@ -26,9 +26,9 @@ const CLASS_NAMES = {
   iconColumn: () => Config.Css.css`
     padding-right: 24px;
     text-align: center;
-  
+
     ${UU5.Utils.ScreenSize.getMinMediaQueries("s", `text-align: right;`)}
-  
+
     .uu5-bricks-icon {
       font-size: 48px;
     }
@@ -58,7 +58,7 @@ export const WelcomeRow = createVisualComponent({
 
   render(props) {
     //@@viewOn:private
-    let { icon, textPadding, children } = props;
+    let {icon, textPadding, children} = props;
     //@@viewOff:private
 
     //@@viewOn:interface
@@ -70,7 +70,7 @@ export const WelcomeRow = createVisualComponent({
     return (
       <UU5.Bricks.Row {...attrs}>
         <UU5.Bricks.Column className={CLASS_NAMES.iconColumn()} colWidth="xs-12 s-2">
-          <UU5.Bricks.Icon icon={icon} className={CLASS_NAMES.icon(cssMargin)} />
+          <UU5.Bricks.Icon icon={icon} className={CLASS_NAMES.icon(cssMargin)}/>
         </UU5.Bricks.Column>
         <UU5.Bricks.Column
           className={CLASS_NAMES.text()}

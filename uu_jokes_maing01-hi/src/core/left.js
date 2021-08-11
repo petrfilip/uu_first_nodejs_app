@@ -1,7 +1,7 @@
 //@@viewOn:imports
 import UU5 from "uu5g04";
 import "uu5g04-bricks";
-import { createVisualComponent } from "uu5g04-hooks";
+import {createVisualComponent} from "uu5g04-hooks";
 import Plus4U5 from "uu_plus4u5g01";
 import "uu_plus4u5g01-app";
 
@@ -42,13 +42,16 @@ export const Left = createVisualComponent({
           companyLogo: Plus4U5.Environment.basePath + "assets/img/unicorn-logo.svg",
           generation: "1",
         }}
-        aboutItems={[{ content: <UU5.Bricks.Lsi lsi={Lsi.left.about} />, href: "about" }]}
+        aboutItems={[{content: <UU5.Bricks.Lsi lsi={Lsi.left.about}/>, href: "about"}]}
         helpHref={null}
       >
         <Plus4U5.App.MenuTree
           borderBottom
           // NOTE Item "id" equals to useCase so that item gets automatically selected when route changes (see spa-autheticated.js).
-          items={[{ id: "home", href: "home", content: <UU5.Bricks.Lsi lsi={Lsi.left.home} /> }]}
+          items={[
+            {id: "home", href: "home", content: <UU5.Bricks.Lsi lsi={Lsi.left.home}/>},
+            {id: "jokes", href: "jokes", content: <UU5.Bricks.Lsi lsi={Lsi.left.jokes}/>} // Add this line
+          ]}
         />
       </Plus4U5.App.Left>
     );
