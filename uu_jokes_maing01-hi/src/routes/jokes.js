@@ -86,12 +86,18 @@ const Jokes = createVisualComponent({
       return <UU5.Bricks.Loading/>;
     }
 
-    function renderReady(jokes) {
+    function renderReady(jokes, handleLoad) {
       return (
         <>
           <JokesTitle jokes={jokes}/>
           {isCreateAuthorized() && <JokeCreate onCreate={handleCreateJoke}/>}
-          <JokeList jokes={jokes} onDetail={openDetail} onUpdate={openUpdateForm} onDelete={handleDeleteJoke}/>
+          <JokeList
+            jokes={jokes}
+            onLoad={handleLoad}
+            onDetail={openDetail}
+            onUpdate={openUpdateForm}
+            onDelete={handleDeleteJoke}
+          />
           <JokeUpdateForm ref={updateFormRef} onSave={handleUpdateJoke}/>
           <JokeDetail ref={detailRef}/>
         </>
@@ -126,7 +132,7 @@ const Jokes = createVisualComponent({
               case "ready":
               case "readyNoData":
               default:
-                return renderReady(data);
+                return renderReady(data, handlerMap.loadNext);
             }
           }}
         </JokeProvider>

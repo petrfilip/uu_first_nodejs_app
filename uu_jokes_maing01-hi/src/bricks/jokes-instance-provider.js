@@ -19,7 +19,6 @@ const JokesInstanceProvider = createComponent({
     });
     //@@viewOff:hooks
 
-    debugger
     if (state.data) {
       state.data.authorizedProfileList = ["Authorities", "Executives", "Readers"];
     }

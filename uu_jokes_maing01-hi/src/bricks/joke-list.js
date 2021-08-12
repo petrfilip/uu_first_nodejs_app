@@ -1,8 +1,9 @@
 //@@viewOn:imports
 import UU5 from "uu5g04";
-import {createVisualComponent} from "uu5g04-hooks";
 import Config from "./config/config";
 import Joke from "./joke";
+import {createVisualComponent, PagingAutoLoad} from "uu5g04-hooks";
+import Uu5Tiles from "uu5tilesg02";
 //@@viewOff:imports
 
 const JokeList = createVisualComponent({
@@ -31,20 +32,43 @@ const JokeList = createVisualComponent({
   },
   //@@viewOff:defaultProps
 
-  render({jokes, onDetail, onUpdate, onDelete}) {
+  render({jokes, onLoad, onDetail, onUpdate, onDelete}) {
     //@@viewOn:render
+    function renderItem(item) {
+      return (
+        <Joke joke={item.data.data} colorSchema="green" onDetail={onDetail} onUpdate={onUpdate} onDelete={onDelete}/>
+      );
+    }
+
+    function renderError({reload}) {
+      return <UU5.Bricks.Button onClick={reload} content="Load more (auto-load failed)"/>;
+    }
+
     if (jokes.length === 0) {
       return <UU5.Common.Error content="No jokes!"/>;
     }
 
     return (
-      <UU5.Bricks.Row>
-        {jokes.filter(joke => joke?.data !== undefined).map(joke => (
-          <UU5.Bricks.Column key={joke.data.id} colWidth="xs-12 m-6 l-4 xl-3">
-            <Joke joke={joke.data} colorSchema="green" onDetail={onDetail} onUpdate={onUpdate} onDelete={onDelete}/>
-          </UU5.Bricks.Column>
-        ))}
-      </UU5.Bricks.Row>
+      <>
+        <Uu5Tiles.Grid
+          data={jokes}
+          tileHeight="auto"
+          tileMinWidth={200}
+          tileMaxWidth={400}
+          tileSpacing={8}
+          rowSpacing={8}
+        >
+          {renderItem}
+        </Uu5Tiles.Grid>
+
+        <PagingAutoLoad
+          data={jokes}
+          handleLoad={onLoad}
+          distance={window.innerHeight}
+          pageSize={100}
+          error={renderError}
+        />
+      </>
     );
     //@@viewOff:render
   }
