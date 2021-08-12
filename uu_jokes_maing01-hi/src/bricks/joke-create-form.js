@@ -12,14 +12,14 @@ const JokeCreateForm = createVisualComponent({
 
   //@@viewOn:propTypes
   propTypes: {
-    onSubmit: UU5.PropTypes.func,
+    onSave: UU5.PropTypes.func,
     onCancel: UU5.PropTypes.func
   },
   //@@viewOff:propTypes
 
   //@@viewOn:defaultProps
   defaultProps: {
-    onSubmit: () => {
+    onSave: () => {
     },
     onCancel: () => {
     }
