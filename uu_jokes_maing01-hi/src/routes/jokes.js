@@ -8,6 +8,8 @@ import JokeCreate from "../bricks/joke-create";
 import JokesTitle from "../bricks/jokes-title";
 import JokesInstanceContext from "../bricks/jokes-instance-context";
 import Lsi from "./jokes.lsi";
+import JokeDetail from "../bricks/joke-detail";
+import JokeUpdateForm from "../bricks/joke-update-form";
 //@@viewOff:imports
 
 const Jokes = createVisualComponent({
@@ -23,14 +25,17 @@ const Jokes = createVisualComponent({
     const createJokeRef = useRef();
     const updateJokeRef = useRef();
     const deleteJokeRef = useRef();
+
+    const updateFormRef = useRef();
+    const detailRef = useRef();
     //@viewOff:hooks
 
     //@@viewOn:private
-    function showError(content) {
+    function showError(lsi, params) {
       UU5.Environment.getPage()
         .getAlertBus()
         .addAlert({
-          content,
+          content: <UU5.Bricks.Lsi lsi={lsi} params={params}/>,
           colorSchema: "red"
         });
     }
@@ -39,7 +44,7 @@ const Jokes = createVisualComponent({
       try {
         await createJokeRef.current(joke);
       } catch {
-        showError(`Creation of ${joke.name} failed!`);
+        showError(Lsi.createFailed, [joke.name]);
       }
     }
 
@@ -48,7 +53,7 @@ const Jokes = createVisualComponent({
       try {
         await updateJokeRef.current({id: joke.id, ...values});
       } catch {
-        showError(`Update of ${joke.name} failed!`);
+        showError(Lsi.updateFailed, [joke.name]);
       }
     }
 
@@ -56,7 +61,7 @@ const Jokes = createVisualComponent({
       try {
         await deleteJokeRef.current({id: joke.id});
       } catch {
-        showError(`Deletion of ${joke.name} failed!`);
+        showError(Lsi.deleteFailed, [joke.name]);
       }
     }
 
@@ -64,6 +69,14 @@ const Jokes = createVisualComponent({
       return authorizedProfileList?.some(
         profile => profile === Config.Profiles.AUTHORITIES || profile === Config.Profiles.EXECUTIVES
       );
+    }
+
+    function openDetail(joke) {
+      detailRef.current.open(joke);
+    }
+
+    function openUpdateForm(joke) {
+      updateFormRef.current.open(joke);
     }
 
     //@@viewOff:private
@@ -78,7 +91,9 @@ const Jokes = createVisualComponent({
         <>
           <JokesTitle jokes={jokes}/>
           {isCreateAuthorized() && <JokeCreate onCreate={handleCreateJoke}/>}
-          <JokeList jokes={jokes} onDelete={handleDeleteJoke}/>
+          <JokeList jokes={jokes} onDetail={openDetail} onUpdate={openUpdateForm} onDelete={handleDeleteJoke}/>
+          <JokeUpdateForm ref={updateFormRef} onSave={handleUpdateJoke}/>
+          <JokeDetail ref={detailRef}/>
         </>
       );
     }
