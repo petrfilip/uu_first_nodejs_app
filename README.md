@@ -103,16 +103,33 @@ Ran all test suites.
 ![alt text](./how-to-set-tests.png)
 
 ---
+
 ## Nasazení
+
 Deploy aplikace lze udělat pomocí `npm run deploy`.
 
 Aktuální deploy na adrese: https://uuapp.plus4u.net/tga-trainingao-maing01/3d4a47b57b4944e1be0a9cff8ffc01d7/
 
-
 ---
+
 ## GUI
-Základní GUI dle [tutoriálu od 1. do 10. lekce](https://docs.plus4u.net/uaf/uuapp/uu5/book/page?code=getStartedHooks)
 
-Spuštění příkazem `npm start`. Výsledek na přiloženém screenshotu.
+Základní GUI dle [tutoriálu od 1. do 19. lekce](https://docs.plus4u.net/uaf/uuapp/uu5/book/page?code=getStartedHooks) s menšími úpravami
 
-![alt text](./uuJokes.png)
+- načítání profilů uživatele přes uuCmd `/sys/uuAppWorkspace/permission/list`
+- data o aplikaci z uuCmd `/sys/uuAppWorkspace/get`
+- aplikace neobsahuje práci s kategorií
+
+GUI: spuštění příkazem `npm install` a `npm start` v adresáři `uu_jokes_maing01-hi`.
+
+Server s GUI: spuštění příkazem `npm install` a `npm start` v adresáři `uu_jokes_maing01-server`. (Lze spustit pouze GUI nebo backend, ale backend obsahuje i GUI).
+
+![alt text](./showcase-jokes.gif)
+
+## TODO
+
+- [ ] reload obrázku po updatu
+- [ ] podivné načítání dat do Tilesů přes komponentu `PagingAutoLoad`
+- [ ] doladit mockování
+
+

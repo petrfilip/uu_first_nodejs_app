@@ -1,8 +1,7 @@
 //@@viewOn:imports
 import UU5 from "uu5g04";
-import {createVisualComponent, useContext} from "uu5g04-hooks";
+import {createVisualComponent} from "uu5g04-hooks";
 import Calls from "calls";
-import JokesInstanceContext from "./jokes-instance-context";
 import Config from "./config/config";
 import Css from "./joke-detail-content.css";
 import Lsi from "./joke-detail-content.lsi";
@@ -28,7 +27,6 @@ const JokeDetailContent = createVisualComponent({
     joke: UU5.PropTypes.shape({
       name: UU5.PropTypes.string.isRequired,
       text: UU5.PropTypes.string,
-      averageRating: UU5.PropTypes.number.isRequired,
       uuIdentity: UU5.PropTypes.string
     }).isRequired
   },

@@ -17,7 +17,6 @@ const Joke = createVisualComponent({
     joke: UU5.PropTypes.shape({
       name: UU5.PropTypes.string.isRequired,
       text: UU5.PropTypes.string,
-      averageRating: UU5.PropTypes.number.isRequired
     }),
     colorSchema: UU5.PropTypes.string,
     onDetail: UU5.PropTypes.func,

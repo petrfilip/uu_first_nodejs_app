@@ -54,6 +54,11 @@ let Calls = {
     return Calls.call("get", commandUri, {});
   },
 
+  getPermissionListByUuId(uuid) {
+    let commandUri = Calls.getCommandUri("sys/uuAppWorkspace/permission/list");
+    return Calls.call("get", commandUri, {uuIdentityList: [uuid]});
+  },
+
   async initAndGetWorkspace(dtoInData) {
     await Calls.initWorkspace(dtoInData);
     return await Calls.getWorkspace();
