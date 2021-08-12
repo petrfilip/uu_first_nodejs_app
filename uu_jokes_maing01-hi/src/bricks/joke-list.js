@@ -44,7 +44,6 @@ const JokeList = createVisualComponent({
             <Joke joke={joke} colorSchema="green" onDetail={onDetail} onUpdate={onUpdate} onDelete={onDelete}/>
           </UU5.Bricks.Column>
         ))}
-        <Joke/>
       </UU5.Bricks.Row>
     );
     //@@viewOff:render
