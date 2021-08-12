@@ -13,24 +13,23 @@ const {Base64} = require("uu_appg01_server").Utils;
 
 const WARNINGS = {
   createUnsupportedKeys: {
-    code: `${Errors.Create.UC_CODE}unsupportedKeys`
+    code: `${Errors.Create.UC_CODE}unsupportedKeys`,
   },
   listUnsupportedKeys: {
-    code: `${Errors.List.UC_CODE}unsupportedKeys`
+    code: `${Errors.List.UC_CODE}unsupportedKeys`,
   },
   getUnsupportedKeys: {
-    code: `${Errors.Get.UC_CODE}unsupportedKeys`
+    code: `${Errors.Get.UC_CODE}unsupportedKeys`,
   },
   updateUnsupportedKeys: {
-    code: `${Errors.Get.UC_CODE}unsupportedKeys`
+    code: `${Errors.Get.UC_CODE}unsupportedKeys`,
   },
   getImageDataUnsupportedKeys: {
-    code: `${Errors.List.UC_CODE}unsupportedKeys`
+    code: `${Errors.List.UC_CODE}unsupportedKeys`,
   },
 };
 
 const EXECUTIVES_PROFILE = "Executives";
-
 
 class JokesMainAbl {
   constructor() {
@@ -42,8 +41,12 @@ class JokesMainAbl {
   async update(awid, dtoIn, session, authorizationResult) {
     let validationResult = this.validator.validate("jokeUpdateDtoInType", dtoIn);
 
-    let uuAppErrorMap = ValidationHelper.processValidationResult(dtoIn, validationResult,
-      WARNINGS.updateUnsupportedKeys.code, Errors.Update.InvalidDtoIn);
+    let uuAppErrorMap = ValidationHelper.processValidationResult(
+      dtoIn,
+      validationResult,
+      WARNINGS.updateUnsupportedKeys.code,
+      Errors.Update.InvalidDtoIn
+    );
 
     const jokeToUpdate = await this.get(awid, {...dtoIn});
 
@@ -51,10 +54,10 @@ class JokesMainAbl {
       throw new Errors.Update.UserNotAuthorized();
     }
     dtoIn.image = await this._updateImage(awid, dtoIn.image, jokeToUpdate.image);
-    let dtoOut = {}
+    let dtoOut = {};
     try {
-      dtoIn.awid = awid
-      dtoOut = await this.dao.update(dtoIn)
+      dtoIn.awid = awid;
+      dtoOut = await this.dao.update(dtoIn);
     } catch (e) {
       if (e instanceof ObjectStoreError) {
         throw new Errors.Update.JokeDaoUpdateFailed({uuAppErrorMap}, e);
@@ -69,8 +72,12 @@ class JokesMainAbl {
   async delete(awid, dtoIn, session, authorizationResult) {
     let validationResult = this.validator.validate("jokeDeleteDtoInType", dtoIn);
 
-    let uuAppErrorMap = ValidationHelper.processValidationResult(dtoIn, validationResult,
-      WARNINGS.listUnsupportedKeys.code, Errors.Delete.InvalidDtoIn);
+    let uuAppErrorMap = ValidationHelper.processValidationResult(
+      dtoIn,
+      validationResult,
+      WARNINGS.listUnsupportedKeys.code,
+      Errors.Delete.InvalidDtoIn
+    );
 
     const jokeToDelete = await this.get(awid, dtoIn);
 
@@ -78,12 +85,12 @@ class JokesMainAbl {
       throw new Errors.Delete.UserNotAuthorized();
     }
 
-    dtoIn = await this.get(awid, dtoIn)
+    dtoIn = await this.get(awid, dtoIn);
 
     await this._deleteImage(awid, dtoIn.image, uuAppErrorMap);
 
     try {
-      this.dao.remove(jokeToDelete)
+      this.dao.remove(jokeToDelete);
     } catch (e) {
       if (e instanceof ObjectStoreError) {
         throw new Errors.Delete.JokeDaoDeleteFailed({uuAppErrorMap}, e);
@@ -91,7 +98,7 @@ class JokesMainAbl {
       throw e;
     }
 
-    let dtoOut = {}
+    let dtoOut = {};
     dtoOut.uuAppErrorMap = uuAppErrorMap;
     return dtoOut;
   }
@@ -107,15 +114,21 @@ class JokesMainAbl {
   }
 
   hasRights(authorizationResult, jokeToDelete, session) {
-    return (authorizationResult.getAuthorizedProfiles().includes(EXECUTIVES_PROFILE)) ||
-      jokeToDelete.uuIdentity === session.getIdentity().getUuIdentity();
+    return (
+      authorizationResult.getAuthorizedProfiles().includes(EXECUTIVES_PROFILE) ||
+      jokeToDelete.uuIdentity === session.getIdentity().getUuIdentity()
+    );
   }
 
   async get(awid, dtoIn) {
     let validationResult = this.validator.validate("jokeGetDtoInType", dtoIn);
 
-    let uuAppErrorMap = ValidationHelper.processValidationResult(dtoIn, validationResult,
-      WARNINGS.listUnsupportedKeys.code, Errors.Get.InvalidDtoIn);
+    let uuAppErrorMap = ValidationHelper.processValidationResult(
+      dtoIn,
+      validationResult,
+      WARNINGS.listUnsupportedKeys.code,
+      Errors.Get.InvalidDtoIn
+    );
 
     let dtoOut = await this.dao.get(awid, dtoIn.id);
     if (!dtoOut) {
@@ -131,8 +144,12 @@ class JokesMainAbl {
     let validationResult = this.validator.validate("jokeListDtoInType", dtoIn);
 
     // hds 1.2, 1.3 // A1, A2
-    let uuAppErrorMap = ValidationHelper.processValidationResult(dtoIn, validationResult,
-      WARNINGS.listUnsupportedKeys.code, Errors.List.InvalidDtoIn);
+    let uuAppErrorMap = ValidationHelper.processValidationResult(
+      dtoIn,
+      validationResult,
+      WARNINGS.listUnsupportedKeys.code,
+      Errors.List.InvalidDtoIn
+    );
 
     // hds 2
     let dtoOut = await this.dao.listByVisibility(awid, true, dtoIn.pageInfo);
@@ -143,12 +160,14 @@ class JokesMainAbl {
   }
 
   async create(awid, dtoIn, session, authorizationResult) {
-
     let validationResult = this.validator.validate("jokeCreateDtoInType", dtoIn);
 
-
-    let uuAppErrorMap = ValidationHelper.processValidationResult(dtoIn, validationResult,
-      WARNINGS.createUnsupportedKeys.code, Errors.Create.InvalidDtoIn);
+    let uuAppErrorMap = ValidationHelper.processValidationResult(
+      dtoIn,
+      validationResult,
+      WARNINGS.createUnsupportedKeys.code,
+      Errors.Create.InvalidDtoIn
+    );
 
     dtoIn.visibility = authorizationResult.getAuthorizedProfiles().includes(EXECUTIVES_PROFILE);
     dtoIn.uuIdentity = session.getIdentity().getUuIdentity();
@@ -169,7 +188,6 @@ class JokesMainAbl {
       throw e;
     }
 
-
     dtoOut.awid = awid;
     dtoOut.uuAppErrorMap = uuAppErrorMap;
     return dtoOut;
@@ -179,10 +197,11 @@ class JokesMainAbl {
     // update image
     if (binary && code) {
       try {
-        const uploaded = await this.jokeImageDao.updateByCode(awid, code, binary, "NONE")
+        const uploaded = await this.jokeImageDao.updateByCode(awid, code, binary, "NONE");
         return uploaded.code;
       } catch (e) {
-        if (e instanceof BinaryStoreError) { // A3
+        if (e instanceof BinaryStoreError) {
+          // A3
           throw new Errors.Create.JokeImageDaoUpdateFailed({uuAppErrorMap}, e);
         }
         throw e;
@@ -191,7 +210,7 @@ class JokesMainAbl {
 
     // create image
     if (binary && !code) {
-      return await this._createImage(awid, binary)
+      return await this._createImage(awid, binary);
     }
 
     // keep the origin image
@@ -205,7 +224,6 @@ class JokesMainAbl {
     }
 
     throw new Errors.Create.InvalidDtoIn({uuAppErrorMap});
-
   }
   async _createImage(awid, binary) {
     if (binary) {
@@ -213,7 +231,8 @@ class JokesMainAbl {
         const uploaded = await this.jokeImageDao.create({awid}, binary);
         return uploaded.code;
       } catch (e) {
-        if (e instanceof BinaryStoreError) { // A3
+        if (e instanceof BinaryStoreError) {
+          // A3
           throw new Errors.Create.JokeImageDaoCreateFailed({uuAppErrorMap}, e);
         }
         throw e;
@@ -224,14 +243,19 @@ class JokesMainAbl {
   async getImageData(awid, dtoIn) {
     let validationResult = this.validator.validate("jokeGetImageDataDtoInType", dtoIn);
 
-    let uuAppErrorMap = ValidationHelper.processValidationResult(dtoIn, validationResult,
-      WARNINGS.getImageDataUnsupportedKeys.code, ErrorsImageData.GetImageData.InvalidDtoIn);
+    let uuAppErrorMap = ValidationHelper.processValidationResult(
+      dtoIn,
+      validationResult,
+      WARNINGS.getImageDataUnsupportedKeys.code,
+      ErrorsImageData.GetImageData.InvalidDtoIn
+    );
 
     let dtoOut = {};
     try {
       dtoOut = await this.jokeImageDao.getDataByCode(awid, dtoIn.image);
     } catch (e) {
-      if (e.code === "uu-app-binarystore/objectNotFound") { // A3
+      if (e.code === "uu-app-binarystore/objectNotFound") {
+        // A3
         throw new ErrorsImageData.GetImageData.JokeImageDoesNotExist({uuAppErrorMap}, {image: dtoIn.image});
       }
       throw e;
@@ -241,8 +265,6 @@ class JokesMainAbl {
     // dtoOut.uuAppErrorMap = uuAppErrorMap;
     return dtoOut;
   }
-
-
 }
 
 module.exports = new JokesMainAbl();

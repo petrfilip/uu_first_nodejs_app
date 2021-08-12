@@ -2,13 +2,22 @@
 const JokesMainAbl = require("../../abl/jokes-main-abl.js");
 
 class JokesMainController {
-
   update(ucEnv) {
-    return JokesMainAbl.update(ucEnv.getUri().getAwid(), ucEnv.getDtoIn(), ucEnv.getSession(), ucEnv.getAuthorizationResult());
+    return JokesMainAbl.update(
+      ucEnv.getUri().getAwid(),
+      ucEnv.getDtoIn(),
+      ucEnv.getSession(),
+      ucEnv.getAuthorizationResult()
+    );
   }
 
   delete(ucEnv) {
-    return JokesMainAbl.delete(ucEnv.getUri().getAwid(), ucEnv.getDtoIn(), ucEnv.getSession(), ucEnv.getAuthorizationResult());
+    return JokesMainAbl.delete(
+      ucEnv.getUri().getAwid(),
+      ucEnv.getDtoIn(),
+      ucEnv.getSession(),
+      ucEnv.getAuthorizationResult()
+    );
   }
 
   get(ucEnv) {
@@ -20,14 +29,23 @@ class JokesMainController {
   }
 
   create(ucEnv) {
-    return JokesMainAbl.create(ucEnv.getUri().getAwid(), ucEnv.getDtoIn(), ucEnv.getSession(), ucEnv.getAuthorizationResult());
+    return JokesMainAbl.create(
+      ucEnv.getUri().getAwid(),
+      ucEnv.getDtoIn(),
+      ucEnv.getSession(),
+      ucEnv.getAuthorizationResult()
+    );
   }
 
   async getImageData(ucEnv) {
-    const dtoOut =  await JokesMainAbl.getImageData(ucEnv.getUri().getAwid(), ucEnv.getDtoIn(), ucEnv.getSession(), ucEnv.getAuthorizationResult());
+    const dtoOut = await JokesMainAbl.getImageData(
+      ucEnv.getUri().getAwid(),
+      ucEnv.getDtoIn(),
+      ucEnv.getSession(),
+      ucEnv.getAuthorizationResult()
+    );
     return ucEnv.setBinaryDtoOut(dtoOut, ucEnv.getDtoIn().contentDisposition);
   }
-
 }
 
 module.exports = new JokesMainController();

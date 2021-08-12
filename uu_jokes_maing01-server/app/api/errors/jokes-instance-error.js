@@ -41,16 +41,14 @@ const Init = {
 const SayHello = {
   UC_CODE: `${JokesMainUseCaseError.ERROR_PREFIX}sayHello/`,
 
-   InvalidDtoIn: class extends JokesMainUseCaseError {
-      constructor() {
-        super(...arguments);
-        this.code = `${SayHello.UC_CODE}invalidDtoIn`;
-        this.message = "DtoIn is not valid.";
-      }
-    },
-
+  InvalidDtoIn: class extends JokesMainUseCaseError {
+    constructor() {
+      super(...arguments);
+      this.code = `${SayHello.UC_CODE}invalidDtoIn`;
+      this.message = "DtoIn is not valid.";
+    }
+  },
 };
-
 
 module.exports = {
   SayHello,

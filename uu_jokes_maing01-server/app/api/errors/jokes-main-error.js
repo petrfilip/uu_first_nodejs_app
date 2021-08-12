@@ -46,7 +46,7 @@ const List = {
       this.code = `${List.UC_CODE}invalidDtoIn`;
       this.message = "DtoIn is not valid.";
     }
-  }
+  },
 };
 
 const Get = {
@@ -66,7 +66,7 @@ const Get = {
       this.code = `${Get.UC_CODE}jokeDoesNotExist`;
       this.message = "Joke does not exists.";
     }
-  }
+  },
 };
 
 const Delete = {
@@ -102,7 +102,7 @@ const Delete = {
       this.code = `${GetImageData.UC_CODE}jokeImageDaoDeleteFailed`;
       this.message = "Delete image by joke image Dao failed.";
     }
-  }
+  },
 };
 
 const Update = {
@@ -130,9 +130,8 @@ const Update = {
       this.code = `${Update.UC_CODE}jokeDaoUpdateFailed`;
       this.message = "Update joke by joke Dao create failed.";
     }
-  }
+  },
 };
-
 
 module.exports = {
   Update,

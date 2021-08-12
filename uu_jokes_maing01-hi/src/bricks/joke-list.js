@@ -16,7 +16,7 @@ const JokeList = createVisualComponent({
     jokes: UU5.PropTypes.array.isRequired,
     onDetail: UU5.PropTypes.func,
     onUpdate: UU5.PropTypes.func,
-    onDelete: UU5.PropTypes.func
+    onDelete: UU5.PropTypes.func,
   },
   //@@viewOff:propTypes
 
@@ -28,7 +28,7 @@ const JokeList = createVisualComponent({
     onUpdate: () => {
     },
     onDelete: () => {
-    }
+    },
   },
   //@@viewOff:defaultProps
 
@@ -71,7 +71,7 @@ const JokeList = createVisualComponent({
       </>
     );
     //@@viewOff:render
-  }
+  },
 });
 
 export default JokeList;

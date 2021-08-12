@@ -21,7 +21,7 @@ const Joke = createVisualComponent({
     colorSchema: UU5.PropTypes.string,
     onDetail: UU5.PropTypes.func,
     onUpdate: UU5.PropTypes.func,
-    onDelete: UU5.PropTypes.func
+    onDelete: UU5.PropTypes.func,
   },
   //@@viewOff:propTypes
 
@@ -34,7 +34,7 @@ const Joke = createVisualComponent({
     onUpdate: () => {
     },
     onDelete: () => {
-    }
+    },
   },
   //@@viewOff:defaultProps
 
@@ -53,8 +53,8 @@ const Joke = createVisualComponent({
     }
 
     function canManage() {
-      const isAuthority = authorizedProfileList?.some(profile => profile === Config.Profiles.AUTHORITIES);
-      const isExecutive = authorizedProfileList?.some(profile => profile === Config.Profiles.EXECUTIVES);
+      const isAuthority = authorizedProfileList?.some((profile) => profile === Config.Profiles.AUTHORITIES);
+      const isExecutive = authorizedProfileList?.some((profile) => profile === Config.Profiles.EXECUTIVES);
       const isOwner = identity.uuIdentity === joke.uuIdentity;
       return isAuthority || (isExecutive && isOwner);
     }
@@ -67,7 +67,7 @@ const Joke = createVisualComponent({
     }
 
     const {
-      data: {authorizedProfileList}
+      data: {authorizedProfileList},
     } = useContext(JokesInstanceContext);
 
     const {identity} = useSession();
@@ -105,7 +105,7 @@ const Joke = createVisualComponent({
       </UU5.Bricks.Card>
     );
     //@@viewOff:render
-  }
+  },
 });
 
 export default Joke;

@@ -20,7 +20,7 @@ const Top = createVisualComponent({
 
     return <Plus4U5.App.TopBt>{title}</Plus4U5.App.TopBt>;
     //@@viewOff:render
-  }
+  },
 });
 
 export default Top;

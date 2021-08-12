@@ -42,5 +42,5 @@ export default {
   ratingBox,
   rating,
   line,
-  icon
+  icon,
 };

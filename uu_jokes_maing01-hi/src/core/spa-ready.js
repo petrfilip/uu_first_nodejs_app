@@ -15,7 +15,7 @@ import Jokes from "../routes/jokes";
 
 const STATICS = {
   //@@viewOn:statics
-  displayName: Config.TAG + "SpaAuthenticated"
+  displayName: Config.TAG + "SpaAuthenticated",
   //@@viewOff:statics
 };
 
@@ -27,7 +27,7 @@ const ROUTES = {
   "": DEFAULT_USE_CASE,
   home: {component: <Home/>},
   about: {component: <About/>},
-  jokes: {component: <Jokes/>}
+  jokes: {component: <Jokes/>},
 };
 
 export const SpaReady = createVisualComponent({
@@ -88,7 +88,7 @@ export const SpaReady = createVisualComponent({
       </Plus4U5.App.MenuProvider>
     );
     //@@viewOff:render
-  }
+  },
 });
 
 export default SpaReady;

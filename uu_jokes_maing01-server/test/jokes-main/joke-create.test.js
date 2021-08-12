@@ -20,12 +20,11 @@ afterEach(async () => {
 //   });
 // });
 
-
 describe("Joke uuCMD tests", () => {
   test("example 02 - hds", async () => {
     let dtoIn = {
-      name: 'Very Funny Joke',
-      text: 'Something very funny',
+      name: "Very Funny Joke",
+      text: "Something very funny",
     };
     let result = await TestHelper.executePostCommand("joke/create", dtoIn);
 
@@ -45,15 +44,13 @@ describe("Joke uuCMD tests", () => {
       expect(e.status).toEqual(400);
     }
   });
-
 });
-
 
 describe("Joke uuCMD tests", () => {
   test("example 3 test - joke/create", async () => {
     let dtoIn = {
-      name: 'Very Funny Joke',
-      text: 'Something very funny',
+      name: "Very Funny Joke",
+      text: "Something very funny",
     };
     let result = await TestHelper.executePostCommand("joke/create", dtoIn);
 
@@ -62,6 +59,3 @@ describe("Joke uuCMD tests", () => {
     expect(result.data.uuAppErrorMap).toEqual({});
   });
 });
-
-
-

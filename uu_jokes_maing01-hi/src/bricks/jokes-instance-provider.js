@@ -14,26 +14,25 @@ const JokesInstanceProvider = createComponent({
     //@@viewOn:hooks
     const workspaceData = useDataObject({
       handlerMap: {
-        load: Calls.getWorkspace
-      }
+        load: Calls.getWorkspace,
+      },
     });
 
     const myProfilesData = useDataObject({
       handlerMap: {
-        load: Calls.getPermissionListByUuId
-      }
+        load: Calls.getPermissionListByUuId,
+      },
     });
     //@@viewOff:hooks
 
     if (workspaceData.data && myProfilesData.data) {
-      workspaceData.data.authorizedProfileList = myProfilesData.data.itemList.map(permission => permission.profile)
+      workspaceData.data.authorizedProfileList = myProfilesData.data.itemList.map((permission) => permission.profile);
     }
-
 
     //@@viewOn:render
     return <JokesInstanceContext.Provider value={workspaceData}>{children}</JokesInstanceContext.Provider>;
     //@@viewOff:render
-  }
+  },
 });
 
 export default JokesInstanceProvider;

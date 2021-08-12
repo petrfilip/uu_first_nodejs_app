@@ -27,14 +27,14 @@ const JokeDetailContent = createVisualComponent({
     joke: UU5.PropTypes.shape({
       name: UU5.PropTypes.string.isRequired,
       text: UU5.PropTypes.string,
-      uuIdentity: UU5.PropTypes.string
-    }).isRequired
+      uuIdentity: UU5.PropTypes.string,
+    }).isRequired,
   },
   //@@viewOff:propTypes
 
   //@@viewOn:defaultProps
   defaultProps: {
-    joke: null
+    joke: null,
   },
   //@@viewOff:defaultProps
 
@@ -68,7 +68,7 @@ const JokeDetailContent = createVisualComponent({
       </div>
     );
     //@@viewOff:render
-  }
+  },
 });
 
 export default JokeDetailContent;

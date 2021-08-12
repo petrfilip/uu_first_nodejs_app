@@ -13,7 +13,7 @@ const WARNINGS = {
     code: `${Errors.Init.UC_CODE}unsupportedKeys`,
   },
   sayHelloUnsupportedKeys: {
-    code: `${Errors.SayHello.UC_CODE}unsupportedKeys`
+    code: `${Errors.SayHello.UC_CODE}unsupportedKeys`,
   },
 };
 
@@ -26,7 +26,6 @@ class JokesMainAbl {
   }
 
   async sayHello(awid, dtoIn, uuAppErrorMap = {}) {
-
     let validationResult = this.validator.validate("sayHelloDtoInType", dtoIn);
 
     uuAppErrorMap = ValidationHelper.processValidationResult(
@@ -39,8 +38,8 @@ class JokesMainAbl {
 
     return {
       output: `Hello  ${dtoIn.name}`,
-      timeStamp: (new Date()).toISOString(),
-      uuAppErrorMap: uuAppErrorMap
+      timeStamp: new Date().toISOString(),
+      uuAppErrorMap: uuAppErrorMap,
     };
   }
 

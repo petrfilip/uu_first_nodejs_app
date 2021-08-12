@@ -13,7 +13,6 @@ let Calls = {
     return response.data;
   },
 
-
   listJokes(dtoIn) {
     let commandUri = Calls.getCommandUri("joke/list");
     return Calls.call("get", commandUri, dtoIn);

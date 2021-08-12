@@ -13,9 +13,9 @@ class JokeImageMongo extends UuBinaryDao {
   async updateByCode(awid, code, data, revisionStrategy) {
     let filter = {
       awid: awid,
-      code: code
+      code: code,
     };
-    return await super.updateFromStream(filter, {awid}, data, false ,revisionStrategy);
+    return await super.updateFromStream(filter, {awid}, data, false, revisionStrategy);
   }
 
   async deleteByCode(awid, code) {
@@ -25,7 +25,7 @@ class JokeImageMongo extends UuBinaryDao {
   async getDataByCode(awid, code) {
     return await super.openDownloadStream({
       awid: awid,
-      code: code
+      code: code,
     });
   }
 }

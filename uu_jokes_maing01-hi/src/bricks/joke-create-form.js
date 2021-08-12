@@ -1,6 +1,6 @@
 //@@viewOn:imports
 import UU5 from "uu5g04";
-import {createVisualComponent, useLsiValues, useContext, useRef} from "uu5g04-hooks";
+import {createVisualComponent, useContext, useLsiValues, useRef} from "uu5g04-hooks";
 import Config from "./config/config";
 import Lsi from "./joke-create-form.lsi";
 import JokesIntanceContext from "./jokes-instance-context";
@@ -14,7 +14,7 @@ const JokeCreateForm = createVisualComponent({
   //@@viewOn:propTypes
   propTypes: {
     onSave: UU5.PropTypes.func,
-    onCancel: UU5.PropTypes.func
+    onCancel: UU5.PropTypes.func,
   },
   //@@viewOff:propTypes
 
@@ -23,7 +23,7 @@ const JokeCreateForm = createVisualComponent({
     onSave: () => {
     },
     onCancel: () => {
-    }
+    },
   },
   //@@viewOff:defaultProps
 
@@ -33,7 +33,7 @@ const JokeCreateForm = createVisualComponent({
     const imageRef = useRef();
 
     const {
-      data: {categoryList}
+      data: {categoryList},
     } = useContext(JokesIntanceContext);
     //@@viewOn:hooks
 
@@ -56,7 +56,7 @@ const JokeCreateForm = createVisualComponent({
 
     //@@viewOn:render
     function renderCategories() {
-      return categoryList.map(category => (
+      return categoryList.map((category) => (
         <UU5.Forms.Select.Option value={category.id} key={category.id}>
           {category.name}
         </UU5.Forms.Select.Option>
@@ -76,7 +76,6 @@ const JokeCreateForm = createVisualComponent({
         <UU5.Forms.ContextForm onSave={onSave} onCancel={onCancel}>
           <UU5.Forms.Text label={inputLsi.name} name="name" inputAttrs={{maxLength: 255}} required/>
 
-
           <UU5.Forms.File ref_={imageRef} label={inputLsi.image} name="image"/>
 
           <UU5.Forms.TextArea
@@ -92,7 +91,7 @@ const JokeCreateForm = createVisualComponent({
       </UU5.Forms.ContextSection>
     );
     //@@viewOff:render
-  }
+  },
 });
 
 export default JokeCreateForm;

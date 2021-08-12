@@ -2,7 +2,6 @@
 const JokesInstanceAbl = require("../../abl/jokes-instance-abl");
 
 class JokesInstanceController {
-
   sayHello(ucEnv) {
     return JokesInstanceAbl.sayHello(ucEnv.getUri().getAwid(), ucEnv.getDtoIn());
   }

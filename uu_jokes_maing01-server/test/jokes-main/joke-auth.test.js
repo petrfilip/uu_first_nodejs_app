@@ -4,7 +4,7 @@ beforeEach(async () => {
   await TestHelper.setup();
   await TestHelper.initUuSubAppInstance();
   await TestHelper.createUuAppWorkspace();
-  await TestHelper.initUuAppWorkspace( {  uuAppProfileAuthorities: "ues:DEV0183-BT:74309394485200009"});
+  await TestHelper.initUuAppWorkspace({uuAppProfileAuthorities: "ues:DEV0183-BT:74309394485200009"});
 });
 
 afterEach(async () => {
@@ -54,7 +54,6 @@ describe("Joke uuCMD tests - auth", () => {
 
   test("example 04 - unauthorized", async () => {
     expect.assertions(1);
-
 
     await TestHelper.login("ReaderUser");
 

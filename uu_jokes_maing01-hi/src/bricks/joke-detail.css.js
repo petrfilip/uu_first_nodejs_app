@@ -12,5 +12,5 @@ const main = () => Config.Css.css`
 `;
 
 export default {
-  main
+  main,
 };

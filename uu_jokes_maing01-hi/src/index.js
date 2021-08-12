@@ -1,4 +1,4 @@
-import { AppContainer } from "react-hot-loader";
+import {AppContainer} from "react-hot-loader";
 import UU5 from "uu5g04";
 
 import Spa from "./core/spa.js";

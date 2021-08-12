@@ -18,15 +18,15 @@ describe("Joke uuCMD tests - list", () => {
 
     await TestHelper.executePostCommand("joke/create", {
       name: "Very Funny Joke",
-      text: "Something very funny"
+      text: "Something very funny",
     });
     await TestHelper.executePostCommand("joke/create", {
       name: "Very Funny Joke 2",
-      text: "Something very funny 2"
+      text: "Something very funny 2",
     });
     await TestHelper.executePostCommand("joke/create", {
       name: "Very Funny Joke 3",
-      text: "Something very funny 3"
+      text: "Something very funny 3",
     });
 
     let result = await TestHelper.executeGetCommand("joke/list");
@@ -44,7 +44,7 @@ describe("Joke uuCMD tests - list", () => {
 
     await TestHelper.executePostCommand("joke/create", {
       name: "Very Funny Joke",
-      text: "Something very funny"
+      text: "Something very funny",
     });
 
     // login to authority and creating another two jokes
@@ -52,11 +52,11 @@ describe("Joke uuCMD tests - list", () => {
 
     await TestHelper.executePostCommand("joke/create", {
       name: "Very Funny Joke 2",
-      text: "Something very funny 2"
+      text: "Something very funny 2",
     });
     await TestHelper.executePostCommand("joke/create", {
       name: "Very Funny Joke 3",
-      text: "Something very funny 3"
+      text: "Something very funny 3",
     });
 
     let result = await TestHelper.executeGetCommand("joke/list");
@@ -69,22 +69,22 @@ describe("Joke uuCMD tests - list", () => {
 
     await TestHelper.executePostCommand("joke/create", {
       name: "Very Funny Joke",
-      text: "Something very funny"
+      text: "Something very funny",
     });
     await TestHelper.executePostCommand("joke/create", {
       name: "Very Funny Joke 2",
-      text: "Something very funny 2"
+      text: "Something very funny 2",
     });
     await TestHelper.executePostCommand("joke/create", {
       name: "Very Funny Joke 3",
-      text: "Something very funny 3"
+      text: "Something very funny 3",
     });
 
     let dtoIn = {
       pageInfo: {
         pageIndex: 1,
-        pageSize: 2
-      }
+        pageSize: 2,
+      },
     };
     let result = await TestHelper.executeGetCommand("joke/list", dtoIn);
 

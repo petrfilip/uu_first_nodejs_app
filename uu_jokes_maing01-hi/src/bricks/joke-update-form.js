@@ -1,9 +1,8 @@
 //@@viewOn:imports
 import UU5 from "uu5g04";
-import {createVisualComponentWithRef, useLsiValues, useContext, useRef, useImperativeHandle} from "uu5g04-hooks";
+import {createVisualComponentWithRef, useImperativeHandle, useLsiValues, useRef} from "uu5g04-hooks";
 import Config from "./config/config";
 import Lsi from "./joke-update-form.lsi";
-import JokesIntanceContext from "./jokes-instance-context";
 //@@viewOff:imports
 
 const JokeUpdateForm = createVisualComponentWithRef({
@@ -13,14 +12,14 @@ const JokeUpdateForm = createVisualComponentWithRef({
 
   //@@viewOn:propTypes
   propTypes: {
-    onSave: UU5.PropTypes.func
+    onSave: UU5.PropTypes.func,
   },
   //@@viewOff:propTypes
 
   //@@viewOn:defaultProps
   defaultProps: {
     onSave: () => {
-    }
+    },
   },
   //@@viewOff:defaultProps
 
@@ -31,16 +30,15 @@ const JokeUpdateForm = createVisualComponentWithRef({
     const modalRef = useRef();
     const jokeRef = useRef();
 
-
     useImperativeHandle(ref, () => ({
-      open: joke => {
+      open: (joke) => {
         jokeRef.current = joke;
         modalRef.current.open({
           header: renderHeader(),
           content: renderForm(joke),
-          footer: renderControls()
+          footer: renderControls(),
         });
-      }
+      },
     }));
     //@@viewOn:hooks
 
@@ -97,9 +95,7 @@ const JokeUpdateForm = createVisualComponentWithRef({
             required
           />
 
-
           <UU5.Forms.File ref_={imageRef} label={inputLsi.image} name="image" controlled={false}/>
-
 
           <UU5.Forms.TextArea
             label={inputLsi.text}
@@ -114,10 +110,9 @@ const JokeUpdateForm = createVisualComponentWithRef({
       );
     }
 
-
     return <UU5.Forms.ContextModal ref_={modalRef} overflow/>;
     //@@viewOff:render
-  }
+  },
 });
 
 export default JokeUpdateForm;

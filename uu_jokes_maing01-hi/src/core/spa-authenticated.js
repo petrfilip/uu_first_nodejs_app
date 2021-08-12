@@ -38,7 +38,7 @@ const SpaAuthenticated = createVisualComponent({
       </SessionProvider>
     );
     //@@viewOff:render
-  }
+  },
 });
 
 export default SpaAuthenticated;

@@ -18,8 +18,7 @@ const GetImageData = {
       this.message = "Object jokeImage does not exist.";
     }
   },
-
 };
 module.exports = {
-  GetImageData
+  GetImageData,
 };

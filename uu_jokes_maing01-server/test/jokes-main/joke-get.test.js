@@ -18,24 +18,21 @@ describe("Joke uuCMD tests - get", () => {
 
     const joke1 = await TestHelper.executePostCommand("joke/create", {
       name: "Very Funny Joke",
-      text: "Something very funny"
+      text: "Something very funny",
     });
     const joke2 = await TestHelper.executePostCommand("joke/create", {
       name: "Very Funny Joke 2",
-      text: "Something very funny 2"
+      text: "Something very funny 2",
     });
-
 
     let result1 = await TestHelper.executeGetCommand("joke/get", {id: joke1.id});
     let result2 = await TestHelper.executeGetCommand("joke/get", {id: joke2.id});
-
 
     expect(result1.data.id).not.toBeNull();
     expect(result1.data.text).toEqual(joke1.text);
 
     expect(result2.data.id).not.toBeNull();
     expect(result2.data.name).toEqual(joke2.name);
-
   });
 
   test("Get - not found ", async () => {
@@ -44,11 +41,11 @@ describe("Joke uuCMD tests - get", () => {
 
     const joke1 = await TestHelper.executePostCommand("joke/create", {
       name: "Very Funny Joke",
-      text: "Something very funny"
+      text: "Something very funny",
     });
     const joke2 = await TestHelper.executePostCommand("joke/create", {
       name: "Very Funny Joke 2",
-      text: "Something very funny 2"
+      text: "Something very funny 2",
     });
 
     try {
@@ -57,8 +54,4 @@ describe("Joke uuCMD tests - get", () => {
       expect(e.code).toEqual("uu-jokes-main/joke/get/jokeDoesNotExist");
     }
   });
-
-
-
-
 });

@@ -50,7 +50,7 @@ export const Left = createVisualComponent({
           // NOTE Item "id" equals to useCase so that item gets automatically selected when route changes (see spa-autheticated.js).
           items={[
             {id: "home", href: "home", content: <UU5.Bricks.Lsi lsi={Lsi.left.home}/>},
-            {id: "jokes", href: "jokes", content: <UU5.Bricks.Lsi lsi={Lsi.left.jokes}/>} // Add this line
+            {id: "jokes", href: "jokes", content: <UU5.Bricks.Lsi lsi={Lsi.left.jokes}/>}, // Add this line
           ]}
         />
       </Plus4U5.App.Left>

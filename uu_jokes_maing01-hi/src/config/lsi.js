@@ -15,8 +15,8 @@ const Lsi = {
     },
     jokes: {
       cs: "Vtipy",
-      en: "Jokes"
-    }
+      en: "Jokes",
+    },
   },
 
   about: {
@@ -38,7 +38,7 @@ const Lsi = {
     termsOfUse: {
       cs: "Podmínky užívání",
       en: "Terms of use",
-    }
+    },
   },
 
   notAuth: {

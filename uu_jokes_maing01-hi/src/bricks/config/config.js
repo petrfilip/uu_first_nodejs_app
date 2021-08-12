@@ -17,6 +17,6 @@ export default {
   Profiles: {
     AUTHORITIES: "Authorities",
     EXECUTIVES: "Executives",
-    READERS: "Readers"
-  }
+    READERS: "Readers",
+  },
 };

@@ -1,36 +1,36 @@
 const Lsi = {
   name: {
     en: "Name",
-    cs: "Název"
+    cs: "Název",
   },
   text: {
     en: "Text",
-    cs: "Obsah"
+    cs: "Obsah",
   },
   image: {
     en: "Image",
-    cs: "Obrázek"
+    cs: "Obrázek",
   },
   category: {
     en: "Category",
-    cs: "Kategorie"
+    cs: "Kategorie",
   },
   header: {
     en: "Update joke",
-    cs: "Upravit vtip"
+    cs: "Upravit vtip",
   },
   info: {
     en: "You can update the joke...",
-    cs: "Můžete upravit vtip..."
+    cs: "Můžete upravit vtip...",
   },
   submit: {
     en: "Save",
-    cs: "Uložit"
+    cs: "Uložit",
   },
   textOrFile: {
     cs: "Text nebo obrázek musí být vyplněn.",
-    en: "Text of image must be provided."
-  }
+    en: "Text of image must be provided.",
+  },
 };
 
 export default Lsi;

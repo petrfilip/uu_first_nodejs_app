@@ -17,8 +17,8 @@ const JokeProvider = createComponent({
         load: Calls.listJokes,
         createJoke: Calls.createJoke,
         updateJoke: Calls.updateJoke,
-        deleteJoke: Calls.deleteJoke
-      }
+        deleteJoke: Calls.deleteJoke,
+      },
     });
 
     let {state, data, newData, pendingData, errorData, handlerMap} = listDataValues;
@@ -31,10 +31,10 @@ const JokeProvider = createComponent({
       newData,
       pendingData,
       errorData,
-      handlerMap
+      handlerMap,
     });
     //@@viewOff:render
-  }
+  },
 });
 
 export default JokeProvider;

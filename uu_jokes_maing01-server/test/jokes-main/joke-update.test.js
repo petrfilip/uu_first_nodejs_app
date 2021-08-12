@@ -18,13 +18,12 @@ describe("Joke uuCMD tests - update", () => {
 
     const joke1 = await TestHelper.executePostCommand("joke/create", {
       name: "Very Funny Joke",
-      text: "Something very funny"
+      text: "Something very funny",
     });
     const joke2 = await TestHelper.executePostCommand("joke/create", {
       name: "Very Funny Joke 2",
-      text: "Something very funny 2"
+      text: "Something very funny 2",
     });
-
 
     let result1 = await TestHelper.executePostCommand("joke/update", {id: joke1.id, name: "AAA"});
     let result2 = await TestHelper.executePostCommand("joke/update", {id: joke2.id, text: "BBB"});
@@ -34,9 +33,7 @@ describe("Joke uuCMD tests - update", () => {
 
     expect(result2.data.uuAppErrorMap).toEqual({});
     expect(result2.data.text).toEqual("BBB");
-
   });
-
 
   test("Update - Not found ", async () => {
     // Login as a predefined test user (see config/test.json)
@@ -44,11 +41,11 @@ describe("Joke uuCMD tests - update", () => {
 
     const joke1 = await TestHelper.executePostCommand("joke/create", {
       name: "Very Funny Joke",
-      text: "Something very funny"
+      text: "Something very funny",
     });
     const joke2 = await TestHelper.executePostCommand("joke/create", {
       name: "Very Funny Joke 2",
-      text: "Something very funny 2"
+      text: "Something very funny 2",
     });
 
     try {
@@ -57,6 +54,4 @@ describe("Joke uuCMD tests - update", () => {
       expect(e.code).toEqual("uu-jokes-main/joke/get/jokeDoesNotExist");
     }
   });
-
-
 });

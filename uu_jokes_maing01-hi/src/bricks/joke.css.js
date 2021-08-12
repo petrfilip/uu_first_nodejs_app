@@ -68,5 +68,5 @@ export default {
   text,
   image,
   footer,
-  icon
+  icon,
 };

@@ -1,6 +1,6 @@
 //@@viewOn:imports
 import UU5 from "uu5g04";
-import {createVisualComponent, useRef, useContext} from "uu5g04-hooks";
+import {createVisualComponent, useContext, useRef} from "uu5g04-hooks";
 import Config from "./config/config";
 import JokeList from "../bricks/joke-list";
 import JokeProvider from "../bricks/joke-provider";
@@ -20,7 +20,7 @@ const Jokes = createVisualComponent({
   render() {
     //@@viewOn:hooks
     const {
-      data: {authorizedProfileList}
+      data: {authorizedProfileList},
     } = useContext(JokesInstanceContext);
     const createJokeRef = useRef();
     const updateJokeRef = useRef();
@@ -36,7 +36,7 @@ const Jokes = createVisualComponent({
         .getAlertBus()
         .addAlert({
           content: <UU5.Bricks.Lsi lsi={lsi} params={params}/>,
-          colorSchema: "red"
+          colorSchema: "red",
         });
     }
 
@@ -67,7 +67,7 @@ const Jokes = createVisualComponent({
 
     function isCreateAuthorized() {
       return authorizedProfileList?.some(
-        profile => profile === Config.Profiles.AUTHORITIES || profile === Config.Profiles.EXECUTIVES
+        (profile) => profile === Config.Profiles.AUTHORITIES || profile === Config.Profiles.EXECUTIVES
       );
     }
 
@@ -139,7 +139,7 @@ const Jokes = createVisualComponent({
       </UU5.Bricks.Container>
     );
     //@@viewOff:render
-  }
+  },
 });
 
 export default Jokes;

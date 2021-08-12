@@ -126,6 +126,10 @@ Server s GUI: spuštění příkazem `npm install` a `npm start` v adresáři `u
 
 ![alt text](./showcase-jokes.gif)
 
+## Další
+
+- naformátování cšech kódů: `npm run prettify`
+
 ## TODO
 
 - [ ] reload obrázku po updatu

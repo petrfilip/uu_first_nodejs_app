@@ -11,13 +11,13 @@ const JokesTitle = createComponent({
 
   //@@viewOn:propTypes
   propTypes: {
-    jokes: UU5.PropTypes.array.isRequired
+    jokes: UU5.PropTypes.array.isRequired,
   },
   //@@viewOff:propTypes
 
   //@@viewOn:defaultProps
   defaultProps: {
-    jokes: []
+    jokes: [],
   },
   //@@viewOff:defaultProps
 
@@ -36,7 +36,7 @@ const JokesTitle = createComponent({
     //@@viewOn:render
     return null;
     //@@viewOff:render
-  }
+  },
 });
 
 export default JokesTitle;
