@@ -36,26 +36,123 @@ const CLASS_NAMES = {
   `,
 };
 
-export const Home = createVisualComponent({
-  ...STATICS,
+const Home = createVisualComponent({
+  //@@viewOn:statics
+  displayName: Config.TAG + "Home",
+  //@@viewOff:statics
 
-  //@@viewOn:propTypes
-  //@@viewOff:propTypes
-
-  //@@viewOn:defaultProps
-  //@@viewOff:defaultProps
-
-  render(props) {
-    //@@viewOn:private
-    //@@viewOff:private
-
-    //@@viewOn:interface
-    //@@viewOff:interface
-
+  render() {
     //@@viewOn:render
-    return <div>Welcome in uuJokes</div>;
-    //@@viewOff:render
-  },
-});
+    const data = [
+      {
+        label: "Jan",
+        value: 4000,
+        value2: 3000,
+        value3: 1000
+      },
+      {
+        label: "Feb",
+        value: 3000,
+        value2: 1000,
+        value3: 2000
+      },
+      {
+        label: "Mar",
+        value: 2000,
+        value2: 1400,
+        value3: 3000
+      },
+      {
+        label: "Apr",
+        value: 2780,
+        value2: 2000,
+        value3: 4000
+      },
+      {
+        label: "May",
+        value: 1890,
+        value2: 2900,
+        value3: 1400
+      },
+      {
+        label: "Jun",
+        value: 2390,
+        value2: 5000,
+        value3: 1600
+      },
+      {
+        label: "Jul",
+        value: 3490,
+        value2: 1000,
+        value3: 1900
+      },
+      {
+        label: "Aug",
+        value: 500,
+        value2: 3200,
+        value3: 1500
+      },
+      {
+        label: "Sep",
+        value: 1500,
+        value2: 1100,
+        value3: 2300
+      },
+      {
+        label: "Oct",
+        value: 3400,
+        value2: 4300,
+        value3: 2100
+      },
+      {
+        label: "Nov",
+        value: 2895,
+        value2: 3100,
+        value3: 2900
+      },
+      {
+        label: "Dec",
+        value: 4400,
+        value2: 2200,
+        value3: 3000
+      }
+    ];
 
+    const series = [
+      {
+        valueKey: "value",
+        name: "First chart",
+        colorSchema: "red"
+      },
+      {
+        valueKey: "value2",
+        name: "Second chart",
+        colorSchema: "blue"
+      },
+      {
+        valueKey: "value3",
+        name: "Third chart"
+      }
+    ];
+
+    UU5.Environment.uu5DataMap = {data, series};
+
+    return (
+      <UU5.Bricks.Section
+        header='<uu5string/><UuContentKit.Bricks.BlockInfo icon="mdi-format-paint" content="Dynamic Rendering" />'
+        content={`<uu5string/>
+      <UU5.SimpleChart.AreaChart
+        data='<uu5data/>data'
+        series='<uu5data/>series'
+      />
+      <UU5.SimpleChart.BarChart
+        data='<uu5data/>data'
+        series='<uu5data/>series'
+      />
+      `}
+      />
+    );
+    //@@viewOff:render
+  }
+});
 export default Home;
